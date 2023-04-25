@@ -57,7 +57,8 @@ use("hoob3rt/lualine.nvim")
 use("glepnir/lspsaga.nvim")
 use("L3MON4D3/LuaSnip")
 use("akinsho/nvim-bufferline.lua")
-use("nvim-treesitter/nvim-treesitter-context");
+use("nvim-treesitter/nvim-treesitter-context")
+use ("numToStr/Comment.nvim") --comment lines with gcc and gbc
 
 
 end)

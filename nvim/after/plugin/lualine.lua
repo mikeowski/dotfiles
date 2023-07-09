@@ -4,7 +4,7 @@ if not status then
 end
 lualine.setup {
   options = {
-    theme = 'rose-pine',
+    theme = 'gruvbox',
     section_separators = {'', ''},
     component_separators = {'', ''},
     icons_enabled = true,

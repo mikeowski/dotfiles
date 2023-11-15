@@ -6,9 +6,8 @@ return require('packer').startup(function(use)
   use   {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.1',
-		requires = { {'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter','nvim-tree/nvim-web-devicons'} }
+		requires = { {'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons'} }
 	}
-    use { "ellisonleao/gruvbox.nvim" }
 use('nvim-treesitter/nvim-treesitter', {run =  ':TSUpdate'})
 use("nvim-treesitter/nvim-treesitter-textobjects")
 use('ThePrimeagen/harpoon')
@@ -16,7 +15,7 @@ use('mbbill/undotree')
 use('tpope/vim-fugitive')
 use {
 	'VonHeikemen/lsp-zero.nvim',
-  branch = 'v1.x',
+  branch = 'v3.x',
   requires = {
     -- LSP Support
     {'neovim/nvim-lspconfig'},             -- Required
@@ -36,18 +35,27 @@ use {
     {'rafamadriz/friendly-snippets'}, -- Optional
   }
 }
+
+--theme
+use { "catppuccin/nvim", as = "catppuccin" }
+
+--git changes
+use { "lewis6991/gitsigns.nvim"}
+
 use("folke/zen-mode.nvim")
 use("eandrju/cellular-automaton.nvim")
 use("prettier/vim-prettier")
-use('nvim-tree/nvim-tree.lua') 
+use('nvim-tree/nvim-tree.lua')
 use('windwp/nvim-ts-autotag')
 use('windwp/nvim-autopairs')
 use("github/copilot.vim")
 use("hoob3rt/lualine.nvim")
 use("glepnir/lspsaga.nvim")
-use("L3MON4D3/LuaSnip")
-use("akinsho/nvim-bufferline.lua")
 use ("numToStr/Comment.nvim") --comment lines with gcc and gbc
+use {
+  "nvim-telescope/telescope-frecency.nvim",
+  requires = { "kkharji/sqlite.lua" },
+}
 
 
 end)

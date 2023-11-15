@@ -26,10 +26,14 @@ vim.keymap.set('n','<leader>pw',builtin.live_grep,{})
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 vim.keymap.set('n', '<leader>ps',builtin.grep_string,{})
 vim.keymap.set('n', '<leader>pss',builtin.lsp_references,{})
+vim.keymap.set('n', '<leader>;k',builtin.keymaps)
 
       -- To get fzf loaded and working with telescope, you need to call
       -- load_extension, somewhere after setup function:
       require('telescope').load_extension('fzf')
+
+      require("telescope").load_extension "frecency"
+
 
       -- To get ui-select loaded and working with telescope, you need to call
       -- load_extension, somewhere after setup function:

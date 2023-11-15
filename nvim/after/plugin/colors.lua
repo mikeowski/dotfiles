@@ -1,9 +1,5 @@
-require('gruvbox').setup({
-  contrast = 'hard',
-  transparent = false,
-})
 function ColorMyPencils(color) 
-	color = color or "gruvbox"
+	color = color or "catppuccin-macchiato"
 	vim.cmd.colorscheme(color)
 
 

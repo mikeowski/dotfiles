@@ -1,8 +1,8 @@
 local builtin = require('telescope.builtin')
-require('telescope').setup{ 
-  defaults = { 
-    file_ignore_patterns = { 
-      "node_modules" 
+require('telescope').setup{
+  defaults = {
+    file_ignore_patterns = {
+      "node_modules"
     }
   },
   extensions = {
@@ -27,6 +27,10 @@ vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 vim.keymap.set('n', '<leader>ps',builtin.grep_string,{})
 vim.keymap.set('n', '<leader>pss',builtin.lsp_references,{})
 vim.keymap.set('n', '<leader>;k',builtin.keymaps)
+vim.keymap.set('n', '<leader>pr', builtin.resume, {desc = "remember last search"})
+
+--harpoon marks
+vim.keymap.set('n', '<leader>;h',':Telescope harpoon marks<CR>' , {silent = true, noremap = true, desc = "Telescope harpoon" })
 
       -- To get fzf loaded and working with telescope, you need to call
       -- load_extension, somewhere after setup function:
@@ -39,3 +43,4 @@ vim.keymap.set('n', '<leader>;k',builtin.keymaps)
       -- load_extension, somewhere after setup function:
       require("telescope").load_extension("ui-select")
 
+      require("telescope").load_extension('harpoon')

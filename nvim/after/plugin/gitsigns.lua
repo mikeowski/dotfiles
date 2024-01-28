@@ -44,9 +44,14 @@ package.setup{
 
 }
 
-vim.keymap.set('n', "<leader>;d", package.preview_hunk, {desc = "Preview hunk diff"})
-vim.keymap.set('n', "<leader>lb", package.blame_line, { desc = "blame line"})
-vim.keymap.set('n', "<leader>;r", package.reset_buffer, { desc = "reset buffer"})
+
+  local function opts(desc)
+    return { desc ='gitsign: ' .. desc,  noremap = true, silent = true  }
+  end
+
+vim.keymap.set('n', "<leader>;d", package.preview_hunk, opts("gitsign: Preview hunk diff"))
+vim.keymap.set('n', "<leader>lb", package.blame_line, opts("gitsign: blame line"))
+vim.keymap.set('n', "<leader>;r", package.reset_hunk, opts("gitsign: reset hunk"))
 
 
 

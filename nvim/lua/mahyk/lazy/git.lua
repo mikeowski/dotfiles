@@ -1,7 +1,8 @@
-local package = require('gitsigns')
-
-package.setup{
-  signs = {
+return {
+ "lewis6991/gitsigns.nvim",
+  event = "BufRead",
+  opts = {
+      signs = {
     add          = { text = '│' },
     change       = { text = '│' },
     delete       = { text = '_' },
@@ -41,17 +42,29 @@ package.setup{
   yadm = {
     enable = false
   },
+  },
+  keys = {
+      {
+        "<leader>;d",
+        function()
+          require('gitsigns').preview_hunk()
+        end,
+        desc = "gitsigns: Preview hunk diff",
+      },
+      {
+        "<leader>lb",
+        function()
+          require('gitsigns').blame_line()
+        end,
+        desc = "gitsigns: blame line",
+      },
+      {
+        "<leader>;r",
+        function()
+          require('gitsigns').reset_hunk()
+        end,
+        desc = "gitsigns: reset hunk",
+      },
+  }
 
 }
-
-
-  local function opts(desc)
-    return { desc ='gitsign: ' .. desc,  noremap = true, silent = true  }
-  end
-
-vim.keymap.set('n', "<leader>;d", package.preview_hunk, opts("gitsign: Preview hunk diff"))
-vim.keymap.set('n', "<leader>lb", package.blame_line, opts("gitsign: blame line"))
-vim.keymap.set('n', "<leader>;r", package.reset_hunk, opts("gitsign: reset hunk"))
-
-
-

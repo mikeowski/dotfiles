@@ -19,6 +19,7 @@ return {
       fidget = true,
       gitsigns = true,
       mason = true,
+      noice = true,
       markdown = true,
       native_lsp = {
         enabled = true,

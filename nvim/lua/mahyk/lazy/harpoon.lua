@@ -2,6 +2,14 @@ return {
   "ThePrimeagen/harpoon",
   branch = "harpoon2",
   opts = {
+    settings = {
+      save_on_toggle = true,
+      -- save on close is working
+      sync_on_ui_close = true,
+      key = function()
+        return vim.loop.cwd()
+      end,
+    },
 
   },
   keys = {

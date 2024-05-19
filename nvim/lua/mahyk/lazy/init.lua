@@ -11,7 +11,6 @@ return {
   { "mg979/vim-visual-multi", branch = "master" },
   { 'windwp/nvim-ts-autotag', event = "BufRead",  opts = {} },
   { 'windwp/nvim-autopairs',  evenet = "BufRead", opts = {} },
-  "eandrju/cellular-automaton.nvim",
   "github/copilot.vim",
-  "AndrewRadev/splitjoin.vim"
+  "eandrju/cellular-automaton.nvim",
 }

@@ -2,7 +2,6 @@ function ColorMyPencils(color)
   color = color or "catppuccin-mocha"
   vim.cmd.colorscheme(color)
 
-
   vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
   vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
@@ -14,13 +13,10 @@ return {
   lazy = true,
   opts = {
     integrations = {
-      aerial = true,
-      alpha = true,
       cmp = true,
       fidget = true,
       gitsigns = true,
       mason = true,
-      noice = true,
       markdown = true,
       native_lsp = {
         enabled = true,
@@ -40,5 +36,5 @@ return {
   },
   init = function()
     ColorMyPencils()
-  end
+  end,
 }

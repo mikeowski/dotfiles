@@ -1,5 +1,17 @@
 return {
   {
+    'stevearc/oil.nvim',
+    opts = {},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+      {
+        "<leader>-",
+        "<CMD>Oil<CR>",
+        desc = "Toggle Oil",
+      },
+    },
+  },
+  {
     "nvim-tree/nvim-tree.lua",
     dependencies = {
       { "nvim-tree/nvim-web-devicons", lazy = true },
@@ -71,44 +83,76 @@ return {
   },
   {
     "folke/noice.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-    },
-    opts = {
-      lsp = {
-        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
-        },
-      },
-      -- you can enable a preset for easier configuration
-      presets = {
-        bottom_search = true,         -- use a classic bottom cmdline for search
-        command_palette = true,       -- position the cmdline and popupmenu together
-        long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false,       -- add a border to hover docs and signature help
-      },
-    }
-  },
+    opts = function(_, opts)
+      opts.routes = opts.routes or {}
 
+      table.insert(opts.routes, {
+        filter = {
+          event = "notify",
+          find = "No information available",
+        },
+        opts = { skip = true },
+      })
+
+      local focused = true
+      vim.api.nvim_create_autocmd("FocusGained", {
+        callback = function()
+          focused = true
+        end,
+      })
+      vim.api.nvim_create_autocmd("FocusLost", {
+        callback = function()
+          focused = false
+        end,
+      })
+
+      table.insert(opts.routes, 1, {
+        filter = {
+          cond = function()
+            return not focused
+          end,
+        },
+        view = "notify_send",
+        opts = { stop = false },
+      })
+
+      opts.commands = opts.commands or {}
+
+      opts.commands.all = {
+        view = "split",
+        opts = { enter = true, format = "details" },
+        filter = {},
+      }
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "markdown",
+        callback = function(event)
+          vim.schedule(function()
+            require("noice.text.markdown").keys(event.buf)
+          end)
+        end,
+      })
+
+      opts.presets = opts.presets or {}
+      opts.presets.lsp_doc_border = true
+    end,
+  },
   {
-    "stevearc/dressing.nvim",
-    lazy = true,
-    opts = {},
-    init = function()
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.select = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.select(...)
-      end
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.input = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.input(...)
-      end
+    "rcarriga/nvim-notify",
+    opts = {
+      timeout = 1000,
+    },
+  },
+  {
+    "echasnovski/mini.animate",
+    event = "VeryLazy",
+    opts = function(_, opts)
+      opts.scroll = {
+        enable = false,
+      }
+      opts.cursor = {
+        enable = false
+      }
     end,
   },
 }

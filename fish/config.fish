@@ -19,7 +19,6 @@ set -g __fish_git_prompt_color_cleanstate green --bold
 set -g __fish_git_prompt_color_invalidstate red
 set -g __fish_git_prompt_color_branch cyan --dim --italics
 
-
 # brew install jump, https://github.com/gsamokovarov/jump
 status --is-interactive; and source (jump shell fish | psub)
 

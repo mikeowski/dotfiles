@@ -1,3 +1,3 @@
 function la
-    colorls -al $argv
+    lsd -a
 end

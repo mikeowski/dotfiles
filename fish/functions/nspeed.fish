@@ -1,0 +1,3 @@
+function nspeed
+    networkQuality
+end
